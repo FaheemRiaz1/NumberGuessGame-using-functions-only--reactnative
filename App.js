@@ -11,17 +11,11 @@ class App2 extends React.Component {
   render() {
     return (
       <View style={{ paddingTop: 100 }}>
-        <Text style={stylesApp2.heading}>Class Based Component</Text>
+        <Text style={styles.heading}>Class Based Component</Text>
       </View>
     );
   }
 }
-const stylesApp2 = StyleSheet.create({
-  heading: {
-    fontSize: 20,
-    textAlign: 'center',
-  },
-});
 export default function App() {
    
    const [solution,setSolution] = useState('') ;
@@ -33,17 +27,14 @@ export default function App() {
    const [getcount,setcount]=useState(0);
    const [getscore,setscore]=useState(0);
    const [getturn,setturn]=useState(0);                    
-  const GAME_START_MESSAGE = 'Guess a Number';
+   const GAME_START_MESSAGE = 'Guess a Number';
                
-  const [getNum, setNum] = useState(GAME_START_MESSAGE);
+   const [getNum, setNum] = useState(GAME_START_MESSAGE);
 
-  const numClick = (e) => {
-    // alert(1)
+   const numClick = (e) => {
     if (getNum === 0) setNum(e);
     else setNum(getNum + '' + e);
-
   };
- 
     
  const onClick = button => {
         var z= getugn
@@ -70,8 +61,7 @@ export default function App() {
           hint1()
         }    
         else {
-            setSolution(solution+button)
-                   
+            setSolution(solution+button)               
          }//THIS IS EVENT LISTNER FOR EVERYOTHER BUTTON e.g 1, 2, 3, 4, 5,... etc
       };
       function hint1(){
@@ -109,17 +99,13 @@ export default function App() {
           setSolution("");
         }
       };
-  
       const backspace=()=>{
              setSolution(solution.slice(0, -1))
-  
-
       }
       const buttonClick=(e)=>{
         e.preventDefault();
         this.setState({button:e.target.name, countClick:this.state.countClick+1});
-      } 
-      
+      }    
       //THIS WILL SET THE STATE OF THE INPUT TEXT TO EMPTY STRING
       //TASK#03
      const  reset = () => {
@@ -133,7 +119,6 @@ export default function App() {
        setugnn(Math.floor(Math.random()*100));
        setturn(0);
       };
-
   const message = (
     <View>
       <Text style={{ textAlign: 'center', fontSize: 20 }}>Welcome to Number Guessing Game</Text>
@@ -143,8 +128,7 @@ export default function App() {
   const end = (
     <View>
     <Text style={{ textAlign: 'center', fontSize: 20 }}>Game ended</Text>
-    <Text style={{ textAlign: 'center', fontSize: 20 }}>Your score is {getscore}</Text>
-    
+    <Text style={{ textAlign: 'center', fontSize: 20 }}>Your score is {getscore}</Text>   
       <Button title="Finish" onPress={() => {
         setNum(GAME_START_MESSAGE);
         reset();
@@ -152,69 +136,54 @@ export default function App() {
     <Button title="Play Again" onPress={() => {
       setNum(0);
       reset();
-    }} />
-    
+    }} /> 
     </View>
-
-
   );
   const gameView = (
-        <View style={styles.cbody}>  
-   
-    <Text style={styles.textcontainer}>{solution}</Text>
-    <Text style={styles.textcontainer}>{getresult}</Text>
-    <Text style={styles.textcontainer}>Hint: {gethint1}</Text>
-  
-    <Text style={styles.textcontainer}>Score: {getscore}</Text>
-    <Text style={styles.textcontainer}>Turn: {getturn}</Text>
-  
-
-  <View style={styles.viewcontainer}>
-  <View style={{width:50}}><Button  title="C" onPress={ onClick.bind(this,'reset')}/></View>
-  <View style={{width:50}}><Button  title="CE" onPress={ onClick.bind(this,'CE')}/></View>
-   
-</View>
-  <View style={styles.viewcontainer}>
-
-    <View style={styles.buttoncontainer}><Button  title="1" onPress={ onClick.bind(this,'1')}/></View>
-    <View style={styles.buttoncontainer}><Button  title="2" onPress={onClick.bind(this,'2')}/></View>
-    <View style={styles.buttoncontainer}><Button  title="3" onPress={onClick.bind(this,'3')}/></View>
-  
-  </View>
-  
-  <View style={styles.viewcontainer}>
-    
-    <View style={styles.buttoncontainer}><Button  title="4" onPress={onClick.bind(this,'4')}/></View>  
-    <View style={styles.buttoncontainer}><Button  title="5" onPress={onClick.bind(this,'5')}/></View>
-    <View style={styles.buttoncontainer}><Button title="6" onPress={onClick.bind(this,'6')}/></View>
-  
-  </View>
-  
-  <View style={styles.viewcontainer}>
-  
-    <View style={styles.buttoncontainer}><Button  title="7" onPress={onClick.bind(this,'7')}/></View>
-    <View style={styles.buttoncontainer}><Button  title="8" onPress={onClick.bind(this,'8')}/></View>
-    <View style={styles.buttoncontainer}><Button  title="9" onPress={onClick.bind(this,'9')}/></View>
-     
-  </View>
-  
-  <View style={{flexDirection:"row", justifyContent:"space-between"}}>
-      <View style={styles.buttoncontainer}><Button  title="0" onPress={onClick.bind(this,'0')}/></View>
-      <View style={styles.buttoncontainer}><Button  title="h" onPress={hint1}/></View>
-      <View style={styles.buttoncontainer}><Button  title="=" onPress={onClick.bind(this,'=')}/></View>
+   <View style={styles.cbody}>     
+        <Text style={styles.textcontainer}>{solution}</Text>
+        <Text style={styles.textcontainer}>{getresult}</Text>
+        <Text style={styles.textcontainer}>Hint: {gethint1}</Text>
+        <Text style={styles.textcontainer}>Score: {getscore}</Text>
+        <Text style={styles.textcontainer}>Turn: {getturn}</Text>
       
-</View>
+      <View style={styles.viewcontainer}>
+        <View style={{width:50}}><Button  title="C" onPress={ onClick.bind(this,'reset')}/></View>
+        <View style={{width:50}}><Button  title="CE" onPress={ onClick.bind(this,'CE')}/></View>
       </View>
+
+      <View style={styles.viewcontainer}>
+        <View style={styles.buttoncontainer}><Button  title="1" onPress={ onClick.bind(this,'1')}/></View>
+        <View style={styles.buttoncontainer}><Button  title="2" onPress={onClick.bind(this,'2')}/></View>
+        <View style={styles.buttoncontainer}><Button  title="3" onPress={onClick.bind(this,'3')}/></View>
+      </View>
+      
+      <View style={styles.viewcontainer}>
+        <View style={styles.buttoncontainer}><Button  title="4" onPress={onClick.bind(this,'4')}/></View>  
+        <View style={styles.buttoncontainer}><Button  title="5" onPress={onClick.bind(this,'5')}/></View>
+        <View style={styles.buttoncontainer}><Button title="6" onPress={onClick.bind(this,'6')}/></View>
+      </View>
+      
+      <View style={styles.viewcontainer}>
+        <View style={styles.buttoncontainer}><Button  title="7" onPress={onClick.bind(this,'7')}/></View>
+        <View style={styles.buttoncontainer}><Button  title="8" onPress={onClick.bind(this,'8')}/></View>
+        <View style={styles.buttoncontainer}><Button  title="9" onPress={onClick.bind(this,'9')}/></View>
+      </View>
+      
+      <View style={{flexDirection:"row", justifyContent:"space-between"}}>
+          <View style={styles.buttoncontainer}><Button  title="0" onPress={onClick.bind(this,'0')}/></View>
+          <View style={styles.buttoncontainer}><Button  title="h" onPress={hint1}/></View>
+          <View style={styles.buttoncontainer}><Button  title="=" onPress={onClick.bind(this,'=')}/></View>
+      </View>
+    </View>
        );
 
   return (
     <View style={styles.container}>
       {getNum === GAME_START_MESSAGE ? message : getturn<5 ? gameView: end }
     </View>
-  );
-  
+  );  
 }
-
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -238,5 +207,9 @@ const styles = StyleSheet.create({
   viewcontainer:{
     flexDirection:"row", 
     justifyContent:"space-between",
-  }
+  },
+    heading: {
+    fontSize: 20,
+    textAlign: 'center',
+  },
 });
