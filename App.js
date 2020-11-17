@@ -111,6 +111,8 @@ export default function App() {
       };
   
       const backspace=()=>{
+             setSolution(solution.slice(0, -1))
+  
 
       }
       const buttonClick=(e)=>{
@@ -167,8 +169,9 @@ export default function App() {
     <Text style={styles.textcontainer}>Turn: {getturn}</Text>
   
 
-  <View style={{}}>
-  <View style={{width:100}}><Button  title="reset" onPress={ onClick.bind(this,'reset')}/></View>
+  <View style={styles.viewcontainer}>
+  <View style={{width:50}}><Button  title="C" onPress={ onClick.bind(this,'reset')}/></View>
+  <View style={{width:50}}><Button  title="CE" onPress={ onClick.bind(this,'CE')}/></View>
    
 </View>
   <View style={styles.viewcontainer}>
