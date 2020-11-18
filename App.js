@@ -18,13 +18,11 @@ class App2 extends React.Component {
 }
 export default function App() {
    
-   const [solution,setSolution] = useState('') ;
+   const [getsolution,setSolution] = useState('') ;
    const [getugn, setugnn]=useState(Math.floor(Math.random()*100));
    const [getsgn,setsgn]=useState('');
    const [getresult,setresult]=useState('');
-   const [gethint,sethint]=useState('');
    const [gethint1,sethint1]=useState('');
-   const [getcount,setcount]=useState(0);
    const [getscore,setscore]=useState(0);
    const [getturn,setturn]=useState(0);                    
    const GAME_START_MESSAGE = 'Guess a Number';
@@ -38,8 +36,8 @@ export default function App() {
     
  const onClick = button => {
         var z= getugn
-        if(getcount===5){
-            sethint("You lost the game"),
+        if(getturn===5){
+            sethint1("You lost the game"),
             setresult(z)   
         }
         else if(button === "CE"){
@@ -53,15 +51,14 @@ export default function App() {
            calculate()
            //TASK#01
            var c=1;
-           c=getcount+1
-           setcount(c)
+           c=getturn+1
            setturn(c)         
         }//NOW IF I CLICK = BUTTON THE RESULT WILL BE DISPLAYED 
         else if(button === "h"){
           hint1()
         }    
         else {
-            setSolution(solution+button)               
+            setSolution(getsolution+button)               
          }//THIS IS EVENT LISTNER FOR EVERYOTHER BUTTON e.g 1, 2, 3, 4, 5,... etc
       };
       function hint1(){
@@ -83,12 +80,12 @@ export default function App() {
       //THIS ARROW FUNCTION WILL BE INVOLVE IN CALCULATING CORRECT RESULTS
      const calculate = () => {
         console.log(getugn)
-        var sgn=solution;
+        var sgn=getsolution;
         var ugn=getugn;
         console.log(ugn,sgn)
         var s=getscore
         if(ugn==sgn){
-          setresult("Correct. You won!!")
+          setresult("Correct. !!")
           setscore(getscore+5)
           setturn(getturn+5)
           setSolution("")
@@ -100,7 +97,7 @@ export default function App() {
         }
       };
       const backspace=()=>{
-             setSolution(solution.slice(0, -1))
+             setSolution(getsolution.slice(0, -1))
       }
       const buttonClick=(e)=>{
         e.preventDefault();
@@ -110,8 +107,6 @@ export default function App() {
       //TASK#03
      const  reset = () => {
        setSolution("");
-       setcount(0);
-       sethint("");
        sethint1("");
        setresult("");
        setscore(0);
@@ -119,6 +114,14 @@ export default function App() {
        setugnn(Math.floor(Math.random()*100));
        setturn(0);
       };
+      const Finish=() =>{
+        setNum(GAME_START_MESSAGE);
+        reset();
+      }
+      const PlayAgain =() =>{
+        setNum(0);
+        reset();
+      }
   const message = (
     <View>
       <Text style={{ textAlign: 'center', fontSize: 20 }}>Welcome to Number Guessing Game</Text>
@@ -129,19 +132,13 @@ export default function App() {
     <View>
     <Text style={{ textAlign: 'center', fontSize: 20 }}>Game ended</Text>
     <Text style={{ textAlign: 'center', fontSize: 20 }}>Your score is {getscore}</Text>   
-      <Button title="Finish" onPress={() => {
-        setNum(GAME_START_MESSAGE);
-        reset();
-      }} />
-    <Button title="Play Again" onPress={() => {
-      setNum(0);
-      reset();
-    }} /> 
+      <Button title="Finish" onPress={Finish} />
+    <Button title="Play Again" onPress={PlayAgain} /> 
     </View>
   );
   const gameView = (
    <View style={styles.cbody}>     
-        <Text style={styles.textcontainer}>{solution}</Text>
+        <Text style={styles.textcontainer}>{getsolution}</Text>
         <Text style={styles.textcontainer}>{getresult}</Text>
         <Text style={styles.textcontainer}>Hint: {gethint1}</Text>
         <Text style={styles.textcontainer}>Score: {getscore}</Text>
